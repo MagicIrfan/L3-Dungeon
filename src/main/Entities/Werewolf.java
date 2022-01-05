@@ -1,0 +1,73 @@
+package main.Entities;
+
+import main.utils.Sprite;
+
+import javax.swing.*;
+
+public class Werewolf implements Monster{
+	private double health;
+	private final int nbPoints;
+	private final double strength;
+	private final double attack;
+	private final double resistance;
+	private final Sprite sprite;
+	private final ImageIcon FullMonster;
+	private boolean isWereWolfDead;
+	
+	public Werewolf(){
+		this.sprite = new Sprite("src/main/img/Squares/Monsters/wereWolf.png");
+		this.FullMonster = new ImageIcon("src/main/img/Monters_Full/WereWolfFull.png");
+		this.health = 20;
+		this.nbPoints = 15;
+		this.strength = 1;
+		this.attack = 5;
+		this.resistance = 8;
+		this.isWereWolfDead=false;
+	}
+	public boolean isDead(){
+		return this.isWereWolfDead;
+	}
+	public void setDead(boolean e){
+		this.isWereWolfDead = e;
+	}
+
+	@Override
+	public Sprite getSprite() {
+		return sprite;
+	}
+
+	public void attack(Hero h){
+		h.setHealth((h.getHealth()-(this.attack * this.strength)));
+	}
+	
+	public double getHealth(){
+		return this.health;
+	}
+	
+	public double getStrength(){
+		return this.strength;
+	}
+	public double getAttack(){
+		return this.attack*this.strength;
+	}
+	public void setHealth(double newHealth){
+		this.health = newHealth;
+		if(newHealth<=0)
+			this.setDead(true);
+	}
+
+	@Override
+	public ImageIcon getBigMonster() {
+		return FullMonster;
+	}
+
+	@Override
+	public int getnbPoints() {
+		return this.nbPoints;
+	}
+
+	public double getResistance(){
+		return this.resistance;
+	}
+	public void Position(int posX, int posY){}
+}
